@@ -1,22 +1,19 @@
 <h2>Search for Flights</h2>
 
-<%= form_with scope: :search, url: '/flights', method: :get do |f| %>
-  <%= f.label :departure_airport, "Departing From: " %>
-  <%= f.select(:departure_airport, @airport_options) %>
-  <%= f.label :arrival_airport, "Arriving At: " %>
-  <%= f.select(:arrival_airport, @airport_options) %>
-  <%= f.label :departure_date, "Date of Departure" %>
-  <%= f.select(:departure_date, @date_options) %>
-  <%= f.label :num_tickets, "Passengers: " %>
-  <%= f.select(:num_tickets, (1..4).map { |i| [i, i]} ) %>
-  <%= f.submit "Search", :name => nil %>
-<% end %>
+<%= render "search_form" %>
 
 <h2> Search Results </h2>
 
 <ul>
-<% @flights.each do |flight| %>
-  <li><%= flight %></li>
-  <li>Departing From: <%= flight.departure_airport.code %></li>
-<% end %>
+  <% if @flights.exists? %>
+    <% @flights.each do |flight| %>
+      <li>Flight ID: <%= flight.id %></li>
+      <ul>
+        <li>Departing From: <%= flight.departure_airport.code %></li>
+        <li>Arriving At: <%= flight.arrival_airport.code %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p> No flights match your selection criteria. Please modify your selections and try again</p>
+  <% end %>
 </ul>
