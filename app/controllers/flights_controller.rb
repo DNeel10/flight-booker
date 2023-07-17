@@ -9,6 +9,6 @@ class FlightsController < ApplicationController
   private
   
     def search_params
-      params.require(:search).permit(:departure_airport, :arrival_airport, :departure_date, :num_tickets)
+      params.permit(:departure_airport, :arrival_airport, :departure_date, :num_tickets)
     end
 end

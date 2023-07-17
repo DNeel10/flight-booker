@@ -4,30 +4,27 @@
 
 <h2> Search Results </h2>
 
-  <table style="width: 100%; border: 2px solid black">
-    <tr>
-      <th style="text-align: left; border-bottom: 1px solid black">Select Flight </th>
-      <th style="text-align: left; border-bottom: 1px solid black">Departing From </th>
-      <th style="text-align: left; border-bottom: 1px solid black">Arriving At </th>
-      <th style="text-align: left; border-bottom: 1px solid black">Departure Date </th>
-    </tr>
+<%= form_with model: @flight, url: new_booking_path, method: :get do |f| %>
 
-    <% form_with url: '/flights', method: :get do |f| %>
-    <% end %>
+  <table style="width: 100%; text-align: left">
+    <%= f.hidden_field :passengers, value: params[:num_tickets] %>
+    <tr>
+      <th>Select</th>
+      <th>Flight ID</th>
+      <th>Departure Airport</th>
+      <th>Arrival Airport</th>
+    </tr>
 
     <% @flights.each do |flight| %>
     <tr>
-      <td>
-        <%= radio_button :booking, :flight_id, "#{flight.id}" %>
-        <%= label :booking_flight_id, flight.id %>
-      </td>
-      <td><%= flight.departure_airport.code %></td>
-      <td><%= flight.arrival_airport.code %></td>
-      <td><%= flight.departure_date.strftime("%m-%d-%Y") %>
+      <td><%= f.radio_button :flight_id, flight.id %></td>
+      <td><%= flight.id %>
+      <td><%= flight.departure_airport.code %>
+      <td><%= flight.arrival_airport.code %>
     </tr>
     <% end %>
   </table>
-  <br>
-  <%= submit_tag("Select Flight") %>
-
-
+  <% unless @flights.empty? %>
+    <%= f.submit "Book Flight" %>
+  <% end %>
+<% end %>

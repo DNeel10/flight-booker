@@ -1,12 +1,12 @@
-<%= form_with scope: :search, url: '/flights', method: :get do |f| %>
+<%= form_with url: '/flights', method: :get do |f| %>
   <%= f.label :departure_airport, "Departing From: " %>
-  <%= f.select(:departure_airport, @airport_options, :selected => params[:search][:departure_airport]) %>
+  <%= f.select(:departure_airport, @airport_options, :selected => params[:departure_airport]) %>
 
   <%= f.label :arrival_airport, "Arriving At: " %>
-  <%= f.select(:arrival_airport, @airport_options, :selected => params[:search][:arrival_airport]) %>
+  <%= f.select(:arrival_airport, @airport_options, :selected => params[:arrival_airport]) %>
 
   <%= f.label :departure_date, "Date of Departure" %>
-  <%= f.select(:departure_date, @date_options, :selected => params[:search][:departure_date]) %>
+  <%= f.select(:departure_date, @date_options, :selected => params[:departure_date]) %>
 
   <%= f.label :num_tickets, "Passengers: " %>
   <%= f.select(:num_tickets, (1..4).map { |i| [i, i]},  ) %>
