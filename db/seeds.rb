@@ -22,7 +22,7 @@ puts "Deleted all existing Flights"
 puts "Creating new Flights:"
 1000.times do |i|
   shuffled_airports = airports.shuffle
-  Flight.create([{ departure_airport: shuffled_airports.pop, arrival_airport: shuffled_airports.pop, departure_date: DateTime.now + rand(31).days, duration: rand(90...360) }])
+  Flight.create([{ departure_airport: shuffled_airports.pop, arrival_airport: shuffled_airports.pop, departure_date: DateTime.now + rand(10).days, duration: rand(90...360) }])
   puts "#{1000 - i} flights remaining."
 end
 
