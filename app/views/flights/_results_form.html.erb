@@ -1,0 +1,24 @@
+<%= form_with model: @flight, url: new_booking_path, method: :get do |f| %>
+
+  <table style="width: 100%; text-align: left">
+    <%= f.hidden_field :passengers, value: params[:num_tickets] %>
+    <tr>
+      <th>Select</th>
+      <th>Flight ID</th>
+      <th>Departure Airport</th>
+      <th>Arrival Airport</th>
+    </tr>
+
+    <% @flights.each do |flight| %>
+    <tr>
+      <td><%= f.radio_button :flight_id, flight.id %></td>
+      <td><%= flight.id %>
+      <td><%= flight.departure_airport.code %>
+      <td><%= flight.arrival_airport.code %>
+    </tr>
+    <% end %>
+  </table>
+  <% unless @flights.empty? %>
+    <%= f.submit "Book Flight" %>
+  <% end %>
+<% end %>

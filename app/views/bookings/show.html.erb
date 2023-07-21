@@ -1,0 +1,15 @@
+<h2>Your Booking</h2>
+
+<p>Your Flight Information<p>
+<ul>
+  <li>Departing From: <%= @booking.flight.departure_airport.code %></li>
+  <li>Arriving At: <%= @booking.flight.arrival_airport.code %></li>
+  <li>Departure Date: <%= @booking.flight.departure_date %></li>
+</ul>
+
+<p>Passenger Information</p>
+<ul>
+  <% @booking.passengers.each do |passenger| %>
+    <li><%= passenger.firstname.capitalize %> <%= passenger.lastname.capitalize %></li>
+  <% end %>
+</ul>

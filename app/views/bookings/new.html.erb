@@ -1,0 +1,27 @@
+<h2> New Booking </h2>
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :flight_id, :value => "#{@booking.flight_id}"%>
+
+  <p>Departing From: <%= @booking.flight.departure_airport.code %></p>
+  <p>Arriving At: <%= @booking.flight.arrival_airport.code %></p>
+  <p>Departure Date: <%= @booking.flight.departure_date %></p>
+
+  <%= f.fields_for :passengers do |p| %>
+    <h3> Passenger Information</h3>
+    <div>
+      <%= p.label :firstname, "First Name" %>
+      <%= p.text_field :firstname, :placeholder => "ex. John" %>
+    </div>
+
+    <div>
+      <%= p.label :lastname, "Last Name" %>
+      <%= p.text_field :lastname, :placeholder => "ex. Smith" %>
+    </div>
+
+    <div>
+      <%= p.label :email, "Email Address" %>
+      <%= p.email_field :email, :placeholder => "ex. John@example.com" %>
+    </div>
+  <% end %><br>
+  <%= f.submit %>
+<% end %>
