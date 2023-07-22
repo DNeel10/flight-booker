@@ -4,6 +4,11 @@ class Flight < ApplicationRecord
 
   has_many :bookings
 
+  validates :departure_date, presence: true
+  validates :departure_airport, presence: true
+  validates :arrival_airport, presence: true
+  validates :duration, presence: true
+
   def self.search(params)
     @flights = Flight.where("departure_airport_id = ?",  params[:departure_airport])
       .where("arrival_airport_id = ?",  params[:arrival_airport])
