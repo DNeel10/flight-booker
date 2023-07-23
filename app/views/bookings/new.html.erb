@@ -2,13 +2,11 @@
 
 <h3>Flight information </h3>
 
-<p>Departing From: <%= @flight.departure_airport.code %></p>
-<p>Arriving At: <%= @flight.arrival_airport.code %></p>
-<p>Departure Date: <%= @flight.departure_date %></p>
+<%= render 'flight_info' %>
 
 <%= form_for @booking do |f| %>
   <%= f.hidden_field :flight_id, :value => "#{params[:flight_id]}"%>
-  
+
   <%= f.fields_for :passengers do |p| %>
     <%= render 'passenger_fields', :f => p %>
   <% end %>
