@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-Airport.delete_all
-puts "Deleted all existing Airports"
 puts "Creating new Airports..."
 airports = Airport.create([{ code: "BWI" }, { code: "ATL" }, { code: "DFW" }, 
                            { code: "ORD" }, { code: "JFK" }, { code: "BOS" },
@@ -16,9 +14,6 @@ shuffled_airports = airports.shuffle
 
 puts "Created #{airports.count} new airports."        
 
-Flight.delete_all
-
-puts "Deleted all existing Flights"
 puts "Creating new Flights:"
 1000.times do |i|
   shuffled_airports = airports.shuffle
