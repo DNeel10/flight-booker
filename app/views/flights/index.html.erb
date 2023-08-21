@@ -3,5 +3,6 @@
 <%= render "search_form" %>
 
 <h2> Search Results </h2>
-
-<%= render "results_form" %>
+<%= turbo_frame_tag "flight_results" do %>
+  <%= render "results_form" %>
+<% end %>
