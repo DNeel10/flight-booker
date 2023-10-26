@@ -1,6 +1,8 @@
 <h2>Search for Flights</h2>
 
-<%= render "search_form" %>
+<div data-controller="passenger">
+  <%= render "search_form" %>
+</div>
 
 <h2> Search Results </h2>
 <%= turbo_frame_tag "flight_results" do %>

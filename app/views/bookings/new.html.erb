@@ -4,7 +4,7 @@
 
 <%= render 'flight_info' %>
 
-<%= form_for @booking do |f| %>
+<%= form_for @booking, data: { controller: "passenger" } do |f| %>
   <%= f.hidden_field :flight_id, :value => "#{params[:flight_id]}"%>
 
   <%= f.fields_for :passengers do |p| %>
@@ -12,4 +12,10 @@
   <% end %>
 
   <%= f.submit %>
+
+  <template id="passengerinfo">
+    <%= f.fields_for :passengers do |p| %>
+      <%= render 'passenger_fields', :f => p %>
+    <% end %>
+  </template>
 <% end %>
