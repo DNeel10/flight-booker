@@ -2,22 +2,25 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="passenger"
 export default class extends Controller {
-  static targets = [ "passengerFields", "passengerOutput" ]
-  static values = { "passengerCount": Number }
+
+  static targets = [ "passengerFields", "passengerOutput", "passengerInfo" ]
+  static values = { passengerCount: Number }
 
   connect() {
-    console.log("Hello from passengers")
+    console.log(this.passengerCountValue)
   }
 
-  add() {
+  add(e) {
+    e.preventDefault;
+
     this.passengerCountValue++
-    const temp = this.passengerFieldsTarget
-    const clone = temp.content.cloneNode(true)
-
-    this.passengerOutputTarget.appendChild(clone)
+    const content = this.passengerFieldsTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime().toString())
+    this.passengerOutputTarget.insertAdjacentHTML('beforeend', content)
+    
   }
 
-  remove() {
-    this.passengerCountValue--
+  delete() {
+    this.passengerCountValue--;
+    this.passengerInfoTarget.remove();
   }
 }

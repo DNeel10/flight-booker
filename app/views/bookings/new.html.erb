@@ -15,13 +15,15 @@
   </div>
  
   <button type="button" data-action="click->passenger#add">Add Passenger</button>
-  <button type="button" data-action="click->passenger#remove">Remove Passenger</button>
+  <button type="button" data-action="click->passenger#delete">Remove Passenger</button>
   
   <template data-passenger-target="passengerFields">
-    <%= f.fields_for :passengers do |p| %>
-      <%= render 'passenger_fields', :f => p %>
-    <% end %>
+    <div data-passenger-target="passengerInfo">
+      <%= f.fields_for :passengers, @booking.passengers.build, child_index: 'NEW_RECORD' do |p| %>
+        <%= render 'passenger_fields', :f => p %>
+      <% end %>
+    </div>
   </template>
 
-  <%= f.submit %>
+  <%= f.submit "Add Booking" %>
 <% end %>
