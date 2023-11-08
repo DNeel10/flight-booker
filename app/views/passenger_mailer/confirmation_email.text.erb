@@ -1,0 +1,13 @@
+Thank you for your booking!
+
+
+Your flight information is as follows:
+    Flight Number: <%= @booking.flight_id %>
+    Departure Time: <%= @booking.flight.departure_date %>
+    Departure Airport: <%= @booking.flight.departure_airport.code %>
+    Arrival Airport: <%= @booking.flight.arrival_airport.code %>
+
+The passengers on your flight are:
+    <% @booking.passengers.each do |passenger| %>
+      <%= passenger.firstname %> <%= passenger.lastname %>
+    <% end %>
