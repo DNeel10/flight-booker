@@ -74,3 +74,5 @@ end
 gem "cssbundling-rails", "~> 1.3"
 
 gem "jsbundling-rails"
+
+gem "letter_opener", group: :development
