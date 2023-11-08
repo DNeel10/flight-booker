@@ -20,7 +20,9 @@ export default class extends Controller {
   }
 
   delete() {
-    this.passengerCountValue--;
-    this.passengerInfoTarget.remove();
+    if (this.passengerCountValue > 1) {
+      this.passengerCountValue--;
+      this.passengerInfoTarget.remove();
+    }
   }
 }
